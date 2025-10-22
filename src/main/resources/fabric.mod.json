@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id": "flutter",
+	"version": "${version}",
+	"name": "Flutter",
+	"description": "Adds a simple but easy system for blinking!",
+	"authors": [
+		"Nitron"
+	],
+	"contact": {
+		"source": ""
+	},
+	"license": "ARR",
+	"icon": "assets/flutter/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"dev.nitron.flutter.Flutter"
+		]
+	},
+	"mixins": [
+		"flutter.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.17.3",
+		"minecraft": "~1.21.10",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
