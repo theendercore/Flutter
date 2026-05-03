@@ -21,7 +21,7 @@ public abstract class AbstractClientPlayerEntityMixin {
     @ModifyReturnValue(method = "getSkin", at = @At("RETURN"))
     private SkinTextures flutter$blinking(SkinTextures original) {
         AbstractClientPlayerEntity player = (AbstractClientPlayerEntity) (Object) this;
-        String username = player.getName().getString().toLowerCase(Locale.ROOT);
+        String username = Flutter.sanitizeName(player.getGameProfile().name());
 
         Identifier skin = Identifier.of(Flutter.MOD_ID, "skin/" + username + "/skin");
         Identifier blink = Identifier.of(Flutter.MOD_ID, "skin/" + username + "/blink");

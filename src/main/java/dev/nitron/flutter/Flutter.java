@@ -1,9 +1,10 @@
 package dev.nitron.flutter;
 
 import net.fabricmc.api.ModInitializer;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Locale;
 
 public class Flutter implements ModInitializer {
 	public static final String MOD_ID = "flutter";
@@ -19,6 +20,13 @@ public class Flutter implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("Hello Fabric world!");
-	}
+    }
+
+    public static String sanitizeName(String rawName) {
+        return rawName
+                .toLowerCase(Locale.ROOT)
+                .trim()
+                .replace(" ", "_")
+                .replaceAll("[^\\w\\/\\.\\-]", "_");
+    }
 }
