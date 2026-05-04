@@ -1,9 +1,9 @@
 package dev.nitron.flutter;
 
+import com.mojang.authlib.GameProfile;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.SkinTextures;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
@@ -30,8 +30,8 @@ public class Flutter implements ModInitializer {
                 .registerReloader(id("cache_invalidator"), (SynchronousResourceReloader) manager -> SKIN_CACHE.clear());
     }
 
-    public static Optional<SkinTextures> getFlutterSkin(PlayerEntity player, SkinTextures original) {
-        var rawName = player.getGameProfile().name();
+    public static Optional<SkinTextures> getFlutterSkin(GameProfile gameProfile, int age, SkinTextures original) {
+        var rawName = gameProfile.name();
 
         var cachedSkin = SKIN_CACHE.get(rawName);
         if (cachedSkin == null) {
@@ -39,7 +39,7 @@ public class Flutter implements ModInitializer {
             SKIN_CACHE.put(rawName, cachedSkin);
         }
 
-        return cachedSkin.map((pair) -> (player.age % 80 < 2) ? pair.getLeft() : pair.getRight());
+        return cachedSkin.map((pair) -> (age % 80 < 2) ? pair.getLeft() : pair.getRight());
     }
 
     public static Optional<Pair<SkinTextures, SkinTextures>> createSkin(String rawName, SkinTextures original) {
