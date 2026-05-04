@@ -44,7 +44,6 @@ public class Flutter implements ModInitializer {
 
     public static Optional<Pair<SkinTextures, SkinTextures>> createSkin(String rawName, SkinTextures original) {
         String username = Flutter.sanitizeName(rawName);
-        LOGGER.info("How many times do we run?");
 
         Identifier skin = id("skin/" + username + "/skin");
         Identifier blink = id("skin/" + username + "/blink");
